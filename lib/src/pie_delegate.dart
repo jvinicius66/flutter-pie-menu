@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:pie_menu/src/pie_button.dart';
-import 'package:pie_menu/src/pie_canvas.dart';
-import 'package:pie_menu/src/pie_menu.dart';
-import 'package:pie_menu/src/pie_theme.dart';
 import 'package:vector_math/vector_math.dart' hide Matrix4;
+
+import 'pie_button.dart';
+import 'pie_canvas.dart';
+import 'pie_menu.dart';
+import 'pie_theme.dart';
 
 /// Customized [FlowDelegate] to size and position pie actions efficiently.
 class PieDelegate extends FlowDelegate {

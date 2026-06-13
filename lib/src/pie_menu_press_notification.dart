@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:pie_menu/src/pie_menu.dart';
+
+import 'pie_menu.dart';
 
 /// Notification triggered when the menu is pressed.
 ///

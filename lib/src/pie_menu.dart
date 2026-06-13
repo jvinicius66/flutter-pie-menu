@@ -1,13 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pie_menu/src/pie_action.dart';
-import 'package:pie_menu/src/pie_button.dart';
-import 'package:pie_menu/src/pie_canvas.dart';
-import 'package:pie_menu/src/pie_menu_controller.dart';
-import 'package:pie_menu/src/pie_menu_core.dart';
-import 'package:pie_menu/src/pie_provider.dart';
-import 'package:pie_menu/src/pie_theme.dart';
+
+import 'pie_action.dart';
+import 'pie_button.dart';
+import 'pie_canvas.dart';
+import 'pie_menu_controller.dart';
+import 'pie_menu_core.dart';
+import 'pie_provider.dart';
+import 'pie_theme.dart';
 
 /// Displays a radial menu on the canvas when tapped, long-pressed,
 /// or right-clicked (depending on your [PieTheme] configuration).
@@ -59,7 +60,7 @@ class PieMenu extends StatelessWidget {
       return Semantics(
         customSemanticsActions: {
           for (final action in actions)
-            if (action.semanticsLabel case String label)
+            if (action.semanticsLabel case final String label)
               CustomSemanticsAction(label: label): action.onSelect,
         },
         child: child,

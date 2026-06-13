@@ -1,7 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:pie_menu/src/pie_canvas.dart';
-import 'package:pie_menu/src/pie_menu.dart';
-import 'package:pie_menu/src/pie_menu_event.dart';
+
+import 'pie_canvas.dart';
+import 'pie_menu.dart';
+import 'pie_menu_event.dart';
 
 /// Controller for the [PieCanvas].
 class PieCanvasController extends ValueNotifier<PieMenuEvent> {

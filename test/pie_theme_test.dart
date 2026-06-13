@@ -6,10 +6,16 @@ void main() {
   group(PieTheme, () {
     test('effectiveOverlayColor returns correct color based on brightness', () {
       const lightTheme = PieTheme(brightness: Brightness.light);
-      expect(lightTheme.effectiveOverlayColor, Colors.white.withOpacity(0.8));
+      expect(
+        lightTheme.effectiveOverlayColor,
+        Colors.white.withValues(alpha: .8),
+      );
 
       const darkTheme = PieTheme(brightness: Brightness.dark);
-      expect(darkTheme.effectiveOverlayColor, Colors.black.withOpacity(0.8));
+      expect(
+        darkTheme.effectiveOverlayColor,
+        Colors.black.withValues(alpha: .8),
+      );
 
       const customTheme = PieTheme(overlayColor: Colors.red);
       expect(customTheme.effectiveOverlayColor, Colors.red);

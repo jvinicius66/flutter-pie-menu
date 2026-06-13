@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pie_menu/src/pie_button.dart';
-import 'package:pie_menu/src/pie_button_theme.dart';
-import 'package:pie_menu/src/pie_canvas.dart';
-import 'package:pie_menu/src/pie_menu.dart';
+
+import 'pie_button.dart';
+import 'pie_button_theme.dart';
+import 'pie_canvas.dart';
+import 'pie_menu.dart';
 
 /// Data of a circular button that will be displayed for the [PieMenu].
 class PieAction {

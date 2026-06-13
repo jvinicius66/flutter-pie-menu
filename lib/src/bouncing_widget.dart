@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pie_menu/src/pie_theme.dart';
+import 'pie_theme.dart';
 
 /// This widget is highly inspired by [Bounce](https://pub.dev/packages/bounce)
 /// package created by [Guillaume Cendre](https://github.com/mrcendre)
@@ -97,7 +97,7 @@ class _WidgetSizeRenderObject extends RenderProxyBox {
     super.performLayout();
 
     try {
-      Size? newSize = child?.size;
+      final Size? newSize = child?.size;
 
       if (newSize != null && currentSize != newSize) {
         currentSize = newSize;

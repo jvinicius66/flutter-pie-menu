@@ -2,16 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pie_menu/src/bouncing_widget.dart';
-import 'package:pie_menu/src/pie_action.dart';
-import 'package:pie_menu/src/pie_button.dart';
-import 'package:pie_menu/src/pie_canvas.dart';
-import 'package:pie_menu/src/pie_menu.dart';
-import 'package:pie_menu/src/pie_menu_controller.dart';
-import 'package:pie_menu/src/pie_menu_event.dart';
-import 'package:pie_menu/src/pie_menu_press_notification.dart';
-import 'package:pie_menu/src/pie_provider.dart';
-import 'package:pie_menu/src/pie_theme.dart';
+
+import 'bouncing_widget.dart';
+import 'pie_action.dart';
+import 'pie_button.dart';
+import 'pie_canvas.dart';
+import 'pie_menu.dart';
+import 'pie_menu_controller.dart';
+import 'pie_menu_event.dart';
+import 'pie_menu_press_notification.dart';
+import 'pie_provider.dart';
+import 'pie_theme.dart';
 
 /// Controls functionality and appearance of [PieMenu].
 class PieMenuCore extends StatefulWidget {
@@ -230,21 +231,22 @@ class _PieMenuCoreState extends State<PieMenuCore>
                 child: AnimatedOpacity(
                   opacity:
                       _theme.overlayStyle == PieOverlayStyle.around &&
-                          _state.menuKey == _uniqueKey &&
-                          _state.menuOpen &&
-                          _state.hoveredAction != null
-                      ? _theme.childOpacityOnButtonHover
-                      : 1,
+                              _state.menuKey == _uniqueKey &&
+                              _state.menuOpen &&
+                              _state.hoveredAction != null
+                          ? _theme.childOpacityOnButtonHover
+                          : 1,
                   duration: _theme.hoverDuration,
                   curve: Curves.ease,
-                  child: _theme.childBounceEnabled
-                      ? BouncingWidget(
-                          theme: _theme,
-                          animation: bounceAnimation,
-                          pressedOffset: _localPressedOffset,
-                          child: widget.child,
-                        )
-                      : widget.child,
+                  child:
+                      _theme.childBounceEnabled
+                          ? BouncingWidget(
+                            theme: _theme,
+                            animation: bounceAnimation,
+                            pressedOffset: _localPressedOffset,
+                            child: widget.child,
+                          )
+                          : widget.child,
                 ),
               ),
             ),
@@ -375,9 +377,10 @@ class _PieMenuCoreState extends State<PieMenuCore>
 
     final minDelayMS = 100;
 
-    final debounceDelay = _bounceStopwatch.elapsedMilliseconds > minDelayMS
-        ? Duration.zero
-        : Duration(milliseconds: minDelayMS);
+    final debounceDelay =
+        _bounceStopwatch.elapsedMilliseconds > minDelayMS
+            ? Duration.zero
+            : Duration(milliseconds: minDelayMS);
 
     _debounceTimer = Timer(debounceDelay, () {
       _bounceController.reverse();

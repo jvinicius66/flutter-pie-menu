@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pie_menu/src/pie_canvas_controller.dart';
-import 'package:pie_menu/src/pie_canvas_core.dart';
-import 'package:pie_menu/src/pie_menu.dart';
-import 'package:pie_menu/src/pie_menu_core.dart';
-import 'package:pie_menu/src/pie_provider.dart';
-import 'package:pie_menu/src/pie_theme.dart';
+
+import 'pie_canvas_controller.dart';
+import 'pie_canvas_core.dart';
+import 'pie_menu.dart';
+import 'pie_menu_core.dart';
+import 'pie_provider.dart';
+import 'pie_theme.dart';
 
 /// An ancestor widget that is required for any [PieMenu] to function.
 class PieCanvas extends StatefulWidget {

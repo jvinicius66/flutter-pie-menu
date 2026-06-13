@@ -1,12 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:pie_menu/src/pie_action.dart';
-import 'package:pie_menu/src/pie_button_theme.dart';
-import 'package:pie_menu/src/pie_canvas.dart';
-import 'package:pie_menu/src/pie_menu.dart';
-import 'package:pie_menu/src/pie_provider.dart';
-import 'package:pie_menu/src/pie_theme.dart';
+
+import 'pie_action.dart';
+import 'pie_button_theme.dart';
+import 'pie_canvas.dart';
+import 'pie_menu.dart';
+import 'pie_provider.dart';
+import 'pie_theme.dart';
 
 /// Displays [PieAction]s of the [PieMenu] on the [PieCanvas].
 class PieButton extends StatefulWidget {
@@ -106,14 +107,16 @@ class _PieButtonState extends State<PieButton>
               AnimatedPositioned(
                 duration: _theme.hoverDuration,
                 curve: Curves.ease,
-                top: widget.hovered
-                    ? _theme.buttonSize / 2 -
-                          sin(widget.angle) * _theme.hoverDisplacement
-                    : _theme.buttonSize / 2,
-                right: widget.hovered
-                    ? _theme.buttonSize / 2 -
-                          cos(widget.angle) * _theme.hoverDisplacement
-                    : _theme.buttonSize / 2,
+                top:
+                    widget.hovered
+                        ? _theme.buttonSize / 2 -
+                            sin(widget.angle) * _theme.hoverDisplacement
+                        : _theme.buttonSize / 2,
+                right:
+                    widget.hovered
+                        ? _theme.buttonSize / 2 -
+                            cos(widget.angle) * _theme.hoverDisplacement
+                        : _theme.buttonSize / 2,
                 child: Container(
                   height: _theme.buttonSize,
                   width: _theme.buttonSize,
@@ -123,16 +126,18 @@ class _PieButtonState extends State<PieButton>
                           : _buttonTheme.decoration) ??
                       BoxDecoration(
                         shape: BoxShape.circle,
-                        color: widget.hovered
-                            ? _buttonThemeHovered.backgroundColor
-                            : _buttonTheme.backgroundColor,
+                        color:
+                            widget.hovered
+                                ? _buttonThemeHovered.backgroundColor
+                                : _buttonTheme.backgroundColor,
                       ),
                   child: Center(
                     child: IconTheme(
                       data: IconThemeData(
-                        color: widget.hovered
-                            ? _buttonThemeHovered.iconColor
-                            : _buttonTheme.iconColor,
+                        color:
+                            widget.hovered
+                                ? _buttonThemeHovered.iconColor
+                                : _buttonTheme.iconColor,
                         size: _theme.iconSize,
                       ),
                       child:

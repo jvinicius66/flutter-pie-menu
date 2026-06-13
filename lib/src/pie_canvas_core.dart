@@ -3,18 +3,19 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pie_menu/src/bouncing_widget.dart';
-import 'package:pie_menu/src/pie_action.dart';
-import 'package:pie_menu/src/pie_button.dart';
-import 'package:pie_menu/src/pie_canvas.dart';
-import 'package:pie_menu/src/pie_canvas_controller.dart';
-import 'package:pie_menu/src/pie_delegate.dart';
-import 'package:pie_menu/src/pie_menu.dart';
-import 'package:pie_menu/src/pie_menu_event.dart';
-import 'package:pie_menu/src/pie_provider.dart';
-import 'package:pie_menu/src/pie_theme.dart';
-import 'package:pie_menu/src/platform/base.dart';
 import 'package:vector_math/vector_math.dart' hide Colors;
+
+import 'bouncing_widget.dart';
+import 'pie_action.dart';
+import 'pie_button.dart';
+import 'pie_canvas.dart';
+import 'pie_canvas_controller.dart';
+import 'pie_delegate.dart';
+import 'pie_menu.dart';
+import 'pie_menu_event.dart';
+import 'pie_provider.dart';
+import 'pie_theme.dart';
+import 'platform/base.dart';
 
 /// Controls functionality and appearance of [PieCanvas].
 class PieCanvasCore extends StatefulWidget {
@@ -177,12 +178,14 @@ class PieCanvasCoreState extends State<PieCanvasCore>
 
     final cx = this.cx < padding.left ? padding.left : this.cx;
     final cy = this.cy < padding.top ? padding.top : this.cy;
-    final cw = this.cx + this.cw > size.width - padding.right
-        ? size.width - padding.right - cx
-        : this.cw;
-    final ch = this.cy + this.ch > size.height - padding.bottom
-        ? size.height - padding.bottom - cy
-        : this.ch;
+    final cw =
+        this.cx + this.cw > size.width - padding.right
+            ? size.width - padding.right - cx
+            : this.cw;
+    final ch =
+        this.cy + this.ch > size.height - padding.bottom
+            ? size.height - padding.bottom - cy
+            : this.ch;
 
     final px = _pointerOffset.dx - cx;
     final py = _pointerOffset.dy - cy;
@@ -277,14 +280,20 @@ class PieCanvasCoreState extends State<PieCanvasCore>
   Widget build(BuildContext context) {
     if (_state.menuOpen) {
       final canvasBox = _canvasRenderBox;
-      _canvasOffset = canvasBox != null && canvasBox.attached
-          ? canvasBox.localToGlobal(Offset.zero)
-          : Offset.zero;
+      _canvasOffset =
+          canvasBox != null && canvasBox.attached
+              ? canvasBox.localToGlobal(Offset.zero)
+              : Offset.zero;
 
       final menuBox = _menuRenderBox;
-      _menuOffset = menuBox != null && menuBox.attached
-          ? menuBox.localToGlobal(Offset.zero)
-          : Offset.zero;
+      _menuOffset =
+          menuBox != null && menuBox.attached
+              ? menuBox.localToGlobal(Offset.zero)
+              : Offset.zero;
+
+      if (menuBox != null && menuBox.attached) {
+        _pointerOffset = menuBox.localToGlobal(_localPointerOffset);
+      }
     }
 
     final menuRenderBox = _menuRenderBox;
@@ -314,9 +323,10 @@ class PieCanvasCoreState extends State<PieCanvasCore>
             if (_state.menuOpen) {
               final menuBox = _menuRenderBox;
               setState(() {
-                _menuOffset = menuBox != null && menuBox.attached
-                    ? menuBox.localToGlobal(Offset.zero)
-                    : Offset.zero;
+                _menuOffset =
+                    menuBox != null && menuBox.attached
+                        ? menuBox.localToGlobal(Offset.zero)
+                        : Offset.zero;
               });
             }
             return false;
@@ -324,18 +334,20 @@ class PieCanvasCoreState extends State<PieCanvasCore>
           child: Material(
             type: MaterialType.transparency,
             child: MouseRegion(
-              cursor: hoveredAction != null
-                  ? SystemMouseCursors.click
-                  : SystemMouseCursors.basic,
+              cursor:
+                  hoveredAction != null
+                      ? SystemMouseCursors.click
+                      : SystemMouseCursors.basic,
               child: Stack(
                 children: [
                   Listener(
                     behavior: HitTestBehavior.translucent,
                     onPointerDown: (event) => _pointerDown(event.position),
                     onPointerMove: (event) => _pointerMove(event.position),
-                    onPointerHover: _state.menuOpen
-                        ? (event) => _pointerMove(event.position)
-                        : null,
+                    onPointerHover:
+                        _state.menuOpen
+                            ? (event) => _pointerMove(event.position)
+                            : null,
                     onPointerUp: (event) => _pointerUp(event.position),
                     child: IgnorePointer(
                       ignoring: _state.menuOpen,
@@ -387,26 +399,27 @@ class PieCanvasCoreState extends State<PieCanvasCore>
                                       child: AnimatedOpacity(
                                         opacity:
                                             _state.menuOpen &&
-                                                _state.hoveredAction != null
-                                            ? _theme.childOpacityOnButtonHover
-                                            : 1,
+                                                    _state.hoveredAction != null
+                                                ? _theme
+                                                    .childOpacityOnButtonHover
+                                                : 1,
                                         duration: _theme.hoverDuration,
                                         curve: Curves.ease,
                                         child: SizedBox.fromSize(
                                           size: menuRenderBox.size,
                                           child:
                                               _theme.childBounceEnabled &&
-                                                  bounceAnimation != null
-                                              ? BouncingWidget(
-                                                  theme: _theme,
-                                                  animation: bounceAnimation,
-                                                  pressedOffset:
-                                                      _localPointerOffset,
-                                                  child:
-                                                      _menuChild ??
-                                                      const SizedBox(),
-                                                )
-                                              : _menuChild,
+                                                      bounceAnimation != null
+                                                  ? BouncingWidget(
+                                                    theme: _theme,
+                                                    animation: bounceAnimation,
+                                                    pressedOffset:
+                                                        _localPointerOffset,
+                                                    child:
+                                                        _menuChild ??
+                                                        const SizedBox(),
+                                                  )
+                                                  : _menuChild,
                                         ),
                                       ),
                                     ),
@@ -432,18 +445,17 @@ class PieCanvasCoreState extends State<PieCanvasCore>
                                       (px < cw / 2
                                           ? TextAlign.right
                                           : TextAlign.left),
-                                  style:
-                                      TextStyle(
-                                            fontSize: 32,
-                                            fontWeight: FontWeight.bold,
-                                            color:
-                                                _theme.brightness ==
+                                  style: TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            _theme.brightness ==
                                                     Brightness.light
                                                 ? Colors.black
                                                 : Colors.white,
-                                          )
-                                          .merge(widget.theme.tooltipTextStyle)
-                                          .merge(_theme.tooltipTextStyle),
+                                      )
+                                      .merge(widget.theme.tooltipTextStyle)
+                                      .merge(_theme.tooltipTextStyle),
                                   child: _tooltip ?? const SizedBox(),
                                 ),
                               ),
@@ -470,7 +482,7 @@ class PieCanvasCoreState extends State<PieCanvasCore>
 
                                 final dyMax = offsets
                                     .map((o) => o.dy)
-                                    .reduce((dy1, dy2) => max(dy1, dy2));
+                                    .reduce(max);
 
                                 return dyMax - cy + _theme.buttonSize / 2;
                               }
@@ -480,7 +492,7 @@ class PieCanvasCoreState extends State<PieCanvasCore>
 
                                 final dyMin = offsets
                                     .map((o) => o.dy)
-                                    .reduce((dy1, dy2) => min(dy1, dy2));
+                                    .reduce(min);
 
                                 return ch - dyMin + cy + _theme.buttonSize / 2;
                               }
@@ -491,9 +503,10 @@ class PieCanvasCoreState extends State<PieCanvasCore>
                                 left: 0,
                                 right: 0,
                                 child: Align(
-                                  alignment: px < cw / 2
-                                      ? Alignment.centerRight
-                                      : Alignment.centerLeft,
+                                  alignment:
+                                      px < cw / 2
+                                          ? Alignment.centerRight
+                                          : Alignment.centerLeft,
                                   child: child,
                                 ),
                               );
@@ -523,11 +536,11 @@ class PieCanvasCoreState extends State<PieCanvasCore>
                                             (_theme.brightness ==
                                                     Brightness.light
                                                 ? Colors.black.withValues(
-                                                    alpha: 0.35,
-                                                  )
+                                                  alpha: 0.35,
+                                                )
                                                 : Colors.white.withValues(
-                                                    alpha: 0.5,
-                                                  )),
+                                                  alpha: 0.5,
+                                                )),
                                         width: 4,
                                       ),
                                     ),
@@ -621,9 +634,10 @@ class PieCanvasCoreState extends State<PieCanvasCore>
         _fadeController.forward(from: 0);
 
         _menuRenderBox = renderBox;
-        _menuOffset = renderBox.attached
-            ? renderBox.localToGlobal(Offset.zero)
-            : Offset.zero;
+        _menuOffset =
+            renderBox.attached
+                ? renderBox.localToGlobal(Offset.zero)
+                : Offset.zero;
         _menuChild = child;
         _childBounceAnimation = bounceAnimation;
         _onMenuToggle = onMenuToggle;

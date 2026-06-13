@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pie_menu/src/pie_canvas_core.dart';
-import 'package:pie_menu/src/pie_menu_core.dart';
+
+import 'pie_canvas_core.dart';
+import 'pie_menu_core.dart';
 
 /// Contains variables shared between [PieCanvasCore] and [PieMenuCore].
 class PieState {
@@ -72,9 +73,8 @@ class PieNotifier extends ChangeNotifier {
     state = PieState(
       menuKey: clearMenuKey ? null : menuKey ?? state.menuKey,
       menuOpen: menuOpen ?? state.menuOpen,
-      hoveredAction: clearHoveredAction
-          ? null
-          : hoveredAction ?? state.hoveredAction,
+      hoveredAction:
+          clearHoveredAction ? null : hoveredAction ?? state.hoveredAction,
     );
 
     notifyListeners();
